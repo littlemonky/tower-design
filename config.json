@@ -1,0 +1,10 @@
+{
+  "model_type": "Simulation",
+  "device_type": ["system"],
+  "run_type": "timed",
+  "require_dynamic_data_field":["w_hp_h1_outlet_temperature"],
+  "require_dynamic_data":"30D",
+  "require_process_data_field":[],
+  "require_process_data":"30D",
+  "result_tabel": "condenser_hi"
+}
