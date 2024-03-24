@@ -543,8 +543,8 @@ def thermal_cycle_main(Pcn, raw_data, design_data):
             1 - c2) * h2_sw - (Dh - D1 - D2 - Drh1) * h3) + (Drh * h10 - D4 * h4 - D5 * h5 - D6 * c6 * h6 - D6 * (
             1 - c6) * h6_sw - DL * hL_sw - D7_t * h7 - D7_w * h7_sw - Dpai * hc)
     W = W / 3.6 * yg * ym
-    # Qpai = Dpai * (hc - CP.PropsSI('H', 'P', Pcn * 1e6, 'Q', 0, 'water') / 1e3) + (D7 + D6) * (
-    #         hd7 - CP.PropsSI('H', 'P', Pcn * 1e6, 'Q', 0, 'water') / 1e3)
+    Qpai = (Dpai * (hc - CP.PropsSI('H', 'P', Pcn * 1e6, 'Q', 0, 'water') / 1e3) + (D7 + D6) * (
+            hd7 - CP.PropsSI('H', 'P', Pcn * 1e6, 'Q', 0, 'water') / 1e3))*1e6/3600
     # zhenjixiaolv = W / (W + Qpai / 3.6)
     # Q0 = D0 * (h0 - hw1)
     # q0 = Q0 / Ng * 1e3
@@ -596,7 +596,7 @@ def thermal_cycle_main(Pcn, raw_data, design_data):
     pred['c7_pred'] = c7
     pred['cL_pred'] = cL
 
-    return real, pred, W
+    return real, pred, W, xc, Qpai
 
 # if __name__ == '__main__':
 #     Pcn = 0.0037
